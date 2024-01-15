@@ -1,5 +1,37 @@
 {
   "sections": {
+    "promation_DK6KmB": {
+      "type": "promation",
+      "blocks": {
+        "promation_product_dG3Djf": {
+          "type": "promation_product",
+          "settings": {
+            "product": "the-3p-fulfilled-snowboard"
+          }
+        },
+        "promation_product_YdgVp7": {
+          "type": "promation_product",
+          "settings": {
+            "product": "the-collection-snowboard-hydrogen"
+          }
+        },
+        "promation_product_c6a6zN": {
+          "type": "promation_product",
+          "settings": {
+            "product": "the-collection-snowboard-liquid"
+          }
+        }
+      },
+      "block_order": [
+        "promation_product_dG3Djf",
+        "promation_product_YdgVp7",
+        "promation_product_c6a6zN"
+      ],
+      "settings": {
+        "title": "Promation",
+        "title_position": "center"
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -69,6 +101,7 @@
     }
   },
   "order": [
+    "promation_DK6KmB",
     "image_banner",
     "featured_collection"
   ]

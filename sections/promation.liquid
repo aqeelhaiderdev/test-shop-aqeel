@@ -1,0 +1,84 @@
+<style>
+  .Promation-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .promation-inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+<h2 style="text-align: {{ section.settings.title_position }};">
+  {{ section.settings.title }}
+</h2>
+
+<div class="Promation-box">
+  {% for block in section.blocks %}
+    {% case block.type %}
+    {% when 'promation_product' %}
+      <div class="promation-inner">
+        {{ block.settings.product.featured_image | image_url: width: 300 | image_tag }}
+        <p>{{ block.settings.product.title }}</p>
+      </div>
+    {% endcase %}
+  {% endfor %}
+</div>
+
+{%  schema  %}
+{
+  "name": "Promation Section",
+  "tag": "section",
+  "class": "promation-section",
+  "settings": [
+    {
+      "type": "text",
+      "label": "Title",
+      "id": "title"
+    },
+    {
+      "type": "select",
+      "id": "title_position",
+      "label": "Title Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    }  
+  ],
+  "blocks": [
+    {
+      "type": "promation_product",
+      "name": "Promation Product",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promation Section"
+    }
+  ]
+}
+{% endschema %}
