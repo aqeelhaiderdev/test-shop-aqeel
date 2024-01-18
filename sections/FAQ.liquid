@@ -1,0 +1,88 @@
+{{ 'faq.css' | asset_url | stylesheet_tag }}
+
+<div class="faq-section">
+  <div class="section-header">
+    <h1>{{ section.settings.heading }}</h1>
+    <p>{{ section.settings.description }}</p>
+  </div>
+  <div class="section-body">
+    {% for ques in section.blocks %}
+      {% if ques.type == "question_box" %}
+        <div class="question-box">
+          <h3 class="quesction-sec">{{ ques.settings.question }}</h3>
+          <div class="answer-sec">{{ ques.settings.answer }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.quesction-sec').forEach((ques) => ques.addEventListener('click', ()=> {
+    ques.nextElementSibling.classList.toggle('active');
+  }))
+</script>
+
+{% schema %}
+  {
+    "name": "FAQ,s Section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Title of the section"
+      }, {
+        "type": "richtext",
+        "id": "description",
+        "label": "Description of the Section"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "question_box",
+        "name": "Add Question",
+        "settings": [
+          {
+            "type": "text",
+            "id": "question",
+            "label": "Question"
+          }, {
+            "type": "richtext",
+            "id": "answer",
+            "label": "Answer"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQ,s Section",
+        "settings": {
+          "heading": "FAQ's Section",
+          "description": "<p>This is the description</p>"
+        },
+        "blocks": [
+          {
+            "type": "question_box",
+            "settings": {
+              "question": "What is your question?",
+              "answer": "<p>This is your answer</p>"
+            }
+          }, {
+            "type": "question_box",
+            "settings": {
+              "question": "What is your question?",
+              "answer": "<p>This is your answer</p>"
+            }
+          }, {
+            "type": "question_box",
+            "settings": {
+              "question": "What is your question?",
+              "answer": "<p>This is your answer</p>"
+            }
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

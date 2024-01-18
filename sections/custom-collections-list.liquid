@@ -1,0 +1,41 @@
+{{ 'custom-collections-list.css' |  asset_url |  stylesheet_tag }}
+
+<div class="collections-section">
+  {% for collection in section.blocks %}
+    {% if collection.type == 'collection_box' %}
+      <a href="{{ collection.settings.collection.url }}">
+        <div class="collections-box">
+          {{ collection.settings.collection.featured_image |  image_url: width: 500 |  image_tag }}
+          <p>{{ collection.settings.collection.title }}</p>
+        </div>
+      </a>
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+{% schema %}
+{
+  "name": "Custom Collections List",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Collection",
+      "type": "collection_box",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Collections List"
+    }
+  ]
+}
+{% endschema %}
